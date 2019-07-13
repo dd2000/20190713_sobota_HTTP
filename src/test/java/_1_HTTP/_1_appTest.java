@@ -13,8 +13,10 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.junit.Test;
 
-import java.io.Closeable;
-import java.io.IOException;
+import java.io.*;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.zip.GZIPInputStream;
 
 import static org.junit.Assert.*;
 
@@ -139,6 +141,33 @@ public class _1_appTest {
 
     } // test 4 - testSendDataToSdAcademy()
 
+    // Test 5 - testJavaAPI
+    @Test
+    public void testJavaApi() throws IOException {
+        URL url = new URL("https://sdacademy.pl");
+        URLConnection urlConnection = url.openConnection();
+        urlConnection.addRequestProperty("Accept-Encoding", "gzip");
+        urlConnection.addRequestProperty("User-Agent", "Chrome");
+        InputStream inputStream = urlConnection.getInputStream();
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new GZIPInputStream(inputStream)));
+        String line;
+        while ((line = bufferedReader.readLine()) != null) {
+            System.out.println(line);
+        }
+    } // Test 5 - testJavaAPI
+
+    // Test 6 - zamiast kodu strony pobranie danych w formacie JSON
+    @Test
+    public void getPolandInfo(){
+
+    } // test 6 - getPolandInfo()
+
+
+    // Test 7 - zamiana  JSON na GSON i odwrotnie GSON na JSON
+    @Test
+    public void testGsonParse(){
+
+    } // test 6 - getPolandInfo()
 
 
 
