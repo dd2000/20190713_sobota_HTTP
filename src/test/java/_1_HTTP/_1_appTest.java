@@ -193,6 +193,55 @@ public class _1_appTest {
     //sentencja do zbudowania:  Polska ma ludności: x, graniczy z:... a po włosku to:...
     @Test
     public void testBuildSentence(){
+        String jsonFromWebService = getJsonFromWebService();
+        JsonParser jsonParser = new JsonParser();
+        JsonElement rootElement = jsonParser.parse(jsonFromWebService);
+        StringBuilder sentenceBuilder = new StringBuilder("Polska ma ludnosci: ");
+        JsonArray rootArray = rootElement.getAsJsonArray();
+        JsonElement firstElementArray = rootArray.get(0);
+
+        JsonObject rootObject = firstElementArray.getAsJsonObject();
+        int population = rootObject.get("population").getAsInt();
+        sentenceBuilder.append(population)
+                .append(", graniczy z: ");
+
+        JsonArray borders = rootObject.get("borders").getAsJsonArray();
+        for (JsonElement border : borders) {
+            sentenceBuilder.append(border)
+                    .append(", ");
+        }
+        sentenceBuilder.delete(sentenceBuilder.length() - 2, sentenceBuilder.length());
+        sentenceBuilder.append(" a po włosku to: ");
+        JsonObject translationsObj = rootObject.get("translations").getAsJsonObject();
+        sentenceBuilder.append(translationsObj.get("it").getAsString());
+
+        System.out.println(sentenceBuilder.toString());
+        //Polska ma ludności: x, graniczy z:... a po włosku to:...
+    }
+
+    private String getJsonFromWebService() throws IOException {
+        CloseableHttpClient httpClient = HttpClientBuilder.create().build();
+
+        HttpGet httpGet = new HttpGet("https://restcountries.eu/rest/v2/name/poland");
+
+        CloseableHttpResponse httpResponse = httpClient.execute(httpGet);
+
+        StatusLine statusLine = httpResponse.getStatusLine();
+        int statusCode = statusLine.getStatusCode();
+        String reasonPhrase = statusLine.getReasonPhrase();
+
+        System.out.println("Status: " + statusCode + ", description: " + reasonPhrase);
+
+        Header[] allHeaders = httpResponse.getAllHeaders();
+        for (Header h : allHeaders) {
+            System.out.println("Header name: " + h.getName() + ", value: " + h.getValue());
+        }
+        if (statusCode < 200 || statusCode >= 300) {
+            System.out.println("Cos poszło nie tak");
+            return null;
+        }
+        BasicResponseHandler basicResponseHandler = new BasicResponseHandler();
+        return basicResponseHandler.handleResponse(httpResponse);
 
     } // test 8 - testBuildSentence()
 
@@ -217,8 +266,22 @@ public class _1_appTest {
 // Test 11  - potrzebuje klasy Student
 @Test
 public void sendStudentData() throws IOException{
+        Student student = new Student();
+        student.setAge(32);
+        student.setFirstName("Janeczek");
+        student.setLastName("Studencki");
 
 } // test 11 - sendStudentData()
+
+
+// -------------------------------------
+
+    // Test 12  - potrzebuje klasy Student
+    @Test   // to samo, co w teście 11,
+            // tylko metoda to get (pobieramy dane, nie wysyłamy już żadnych danych na wstępie (tab było w Test 11)
+    public void getStudentData() throws IOException{
+
+    } // test 12 - getStudentData()
 
 
 // -------------------------------------
