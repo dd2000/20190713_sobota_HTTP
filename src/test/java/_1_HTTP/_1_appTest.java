@@ -46,7 +46,7 @@ public class _1_appTest {
         String responseAsString = basicResponseHandler.handleResponse(httpResponse);
         System.out.println(responseAsString);
 
-    } // testGetSdAcademy() throws IOException
+    } // test 1 - testGetSdAcademy() throws IOException
 
     // test 2
     @Test
@@ -67,9 +67,9 @@ public class _1_appTest {
                 System.out.println(responseAsString);
             }
         }
-    } // testGetSdAcademyByIp()
+    } // test 2 - testGetSdAcademyByIp()
 
-    // test 3 => zwraca kod: status 200, a powinien zareagować na próbę usunięcia, gdy domena SDA
+    // test 3 => zwraca kod: status 200, a powinien zareagować na próbę usunięcia, gdy URI: http://sdacademy.pl
     @Test
     public void testDeleteSdAcademy() throws IOException{
 
@@ -98,7 +98,6 @@ public class _1_appTest {
         String responseAsString = basicResponseHandler.handleResponse(httpResponse);
         System.out.println(responseAsString);
 
-
-    } // testDeleteSdAcademy()
+    } // test 3 - testDeleteSdAcademy()
 
 } // class _1_appTest
