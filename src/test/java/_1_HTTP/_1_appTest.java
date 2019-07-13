@@ -1,5 +1,9 @@
 package _1_HTTP;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.apache.http.Header;
 import org.apache.http.StatusLine;
 import org.apache.http.client.entity.EntityBuilder;
@@ -192,7 +196,7 @@ public class _1_appTest {
     // Test 8 - zamiana  JSON na GSON w celu pobrania (wyłuskania) danych z JSON
     //sentencja do zbudowania:  Polska ma ludności: x, graniczy z:... a po włosku to:...
     @Test
-    public void testBuildSentence(){
+    public void testBuildSentence() throws IOException {
         String jsonFromWebService = getJsonFromWebService();
         JsonParser jsonParser = new JsonParser();
         JsonElement rootElement = jsonParser.parse(jsonFromWebService);
