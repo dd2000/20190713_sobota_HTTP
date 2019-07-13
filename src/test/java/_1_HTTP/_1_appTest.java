@@ -16,6 +16,7 @@ import static org.junit.Assert.*;
 
 public class _1_appTest {
 
+    // test 1
     @Test
     public void testGetSdAcademy() throws IOException{
 
@@ -44,6 +45,9 @@ public class _1_appTest {
         String responseAsString = basicResponseHandler.handleResponse(httpResponse);
         System.out.println(responseAsString);
 
-    }
+    } // testGetSdAcademy() throws IOException
+
+    // test 2
+    //@Test
 
 } // class _1_appTest
