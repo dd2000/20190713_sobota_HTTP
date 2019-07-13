@@ -22,6 +22,7 @@ import static org.junit.Assert.*;
 
 public class _1_appTest {
 
+// --------------------
     // test 1
     @Test
     public void testGetSdAcademy() throws IOException{
@@ -53,6 +54,7 @@ public class _1_appTest {
 
     } // test 1 - testGetSdAcademy() throws IOException
 
+// -------------------------
     // test 2
     @Test
     public void testGetSdAcademyByIp() throws IOException {
@@ -74,6 +76,7 @@ public class _1_appTest {
         }
     } // test 2 - testGetSdAcademyByIp()
 
+// -----------------------
     // test 3 => zwraca kod: status 200, a powinien zareagować na próbę usunięcia, gdy URI: http://sdacademy.pl
     @Test
     public void testDeleteSdAcademy() throws IOException{
@@ -105,6 +108,7 @@ public class _1_appTest {
 
     } // test 3 - testDeleteSdAcademy()
 
+//---------------------
     // test 4 => wysyłanie danych (POST) na URI: http://sdacademy.pl
     @Test
     public void testSendDataToSdAcademy() throws IOException{
@@ -141,6 +145,8 @@ public class _1_appTest {
 
     } // test 4 - testSendDataToSdAcademy()
 
+
+// -------------------------------------
     // Test 5 - testJavaAPI
     @Test
     public void testJavaApi() throws IOException {
@@ -156,19 +162,66 @@ public class _1_appTest {
         }
     } // Test 5 - testJavaAPI
 
-    // Test 6 - zamiast kodu strony pobranie danych w formacie JSON
+
+// -------------------------------------
+    // Test 6 - zamiast kodu strony pobranie danych w formacie JSON --> skopiuj i popraw Test1
     @Test
     public void getPolandInfo(){
 
     } // test 6 - getPolandInfo()
 
 
+// -------------------------------------
+// ============================
+// do zależności (Dependences) w pliku pom.xml trzeba dodać:  (<- sprawdź plik pom.xml, co jest dodane)
+//    <dependency>
+//           <groupId>com.google.code.gson</groupId>
+//           <artifactId>gson</artifactId>
+//           <version>2.8.2</version>
+//    </dependency>
+// ============================
+
     // Test 7 - zamiana  JSON na GSON i odwrotnie GSON na JSON
     @Test
     public void testGsonParse(){
 
-    } // test 6 - getPolandInfo()
+    } // test 7 - testGsonParse()
 
+
+// -------------------------------------
+    // Test 8 - zamiana  JSON na GSON w celu pobrania (wyłuskania) danych z JSON
+    //sentencja do zbudowania:  Polska ma ludności: x, graniczy z:... a po włosku to:...
+    @Test
+    public void testBuildSentence(){
+
+    } // test 8 - testBuildSentence()
+
+
+// -------------------------------------
+    // Test 9
+    @Test
+    public void testBuildJsonFromObject(){
+
+    } // test 9 - testBuildJsonFromObject()
+
+
+// -------------------------------------
+    // Test 10
+    @Test
+    public void testBuildObjectFromJson(){
+
+    } // test 10 - testBuildObjectFromJson()
+
+
+// -------------------------------------
+// Test 11  - potrzebuje klasy Student
+@Test
+public void sendStudentData() throws IOException{
+
+} // test 11 - sendStudentData()
+
+
+// -------------------------------------
 
 
 } // class _1_appTest
